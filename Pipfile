@@ -7,6 +7,9 @@ verify_ssl = true
 
 [packages]
 selenium = "*"
+lxml = "*"
+parse = "*"
+cssselect = "*"
 
 [requires]
 python_version = "3.7"
