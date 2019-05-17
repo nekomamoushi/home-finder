@@ -14,7 +14,7 @@ from spiders.base import Spiderman
 
 class SeLogerSpider(Spiderman):
 
-    PROVIDER_NAME = "seloger"
+    NAME = "seloger"
     CSS_SELECTOR_FOR_ADS_NUMBER = 'div.title_nbresult'
     CSS_SELECTOR_FOR_RESULTS_LIST = 'section.liste_resultat'
     CSS_SELECTOR_LIST_FOR_ADS = [
@@ -24,6 +24,7 @@ class SeLogerSpider(Spiderman):
     ]
 
     def crawl(self):
+        self.logger.info("Crawling provider: {0}".format(self.NAME))
         urls = self.start_urls()
         ads = self.process(urls)
         return ads
@@ -35,9 +36,13 @@ class SeLogerSpider(Spiderman):
 
         listing_var = "&LISTING-LISTpg="
         nb_ads, nb_pages = self.ads_number()
+        self.logger.info("Found {0} results according to your criterias".format(nb_ads))
         nb_pages = int(nb_pages)
-        for n in range(1, nb_pages + 1):
-            yield make_url(self._search_url, listing_var, n)
+        urls = [
+            make_url(self._search_url, listing_var, n)
+            for n in range(1, nb_pages + 1)
+        ]
+        return urls
 
     def ads_number(self):
         content = self.make_request(self._search_url)

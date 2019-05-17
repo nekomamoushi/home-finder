@@ -13,17 +13,24 @@ from utils.http import get_user_agent
 
 class Spiderman(metaclass=ABCMeta):
 
-    name = None
+    NAME = None
 
     def __init__(self, search_url, delay=3):
         self._search_url = search_url
         self._delay = delay
         if delay <= 1:
             warnings.warn("Becareful delay={0}, be gentle when scraping".format(delay))
+        self._logger = logging.getLogger(__name__)
         self.start()
+
+    @property
+    def logger(self):
+        return self._logger
 
     # Open headless chromedriver
     def start(self):
+        self.logger.debug("Starting webdriver")
+
         # Firefox options
         options = Options()
         options.headless = True
@@ -43,6 +50,7 @@ class Spiderman(metaclass=ABCMeta):
 
 	# Close chromedriver
     def close(self):
+        self.logger.debug("Closing webdriver")
         self.driver.quit()
 
     # Tell the browser to get a page
@@ -65,6 +73,7 @@ class Spiderman(metaclass=ABCMeta):
 
     def process(self, urls):
         for url in urls:
+            print(url)
             content = self.make_request(url)
             ads = self.process_page(content)
             for ad in ads:
