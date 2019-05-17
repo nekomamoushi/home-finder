@@ -24,6 +24,11 @@ def setup_logging(name, level=logging.INFO):
 
     logging.root.setLevel(level)
 
+def setup_logging_dependencies(level=logging.WARNING):
+    logging.getLogger("selenium").setLevel(level)
+    logging.getLogger("urllib3").setLevel(level)
+    logging.getLogger("parse").setLevel(level)
+
 #-----------------------------------------------------------------------------#
 
 def get_stream_handler(stream, level, format_):
