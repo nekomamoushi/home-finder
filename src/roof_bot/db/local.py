@@ -6,7 +6,7 @@ import logging
 logger = logging.getLogger(__name__)
 
 def build_or_update_database_local(path, data, update=False):
-    if udpdate:
+    if update:
         delete_database(path)
     build_database(path, data)
 
@@ -15,6 +15,7 @@ def delete_database(path):
     Path(path).unlink()
 
 def build_database(path, data):
+    logger.debug("Building {0}".format(path))
     db = Path(path)
     with db.open(mode='w') as fp:
             fp.write(data)
