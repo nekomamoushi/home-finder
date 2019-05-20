@@ -22,3 +22,8 @@ def csv_load(filename, delimiter=';', storage="local"):
         return data
     else:
         raise NotImplementedError()
+
+def file_exists(filename):
+    if Path(filename).expanduser().exists():
+        return True
+    return False
