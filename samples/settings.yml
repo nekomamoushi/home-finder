@@ -1,0 +1,12 @@
+
+search:
+  surface:
+    min:
+    max:
+  rooms:
+  bedrooms:
+  price:
+    min:
+    max: 60
+  cities:
+

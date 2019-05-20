@@ -9,6 +9,7 @@ class Settings(object):
 
     def __init__(self, filename):
         self._filename = filename
+        self.load()
 
     def load(self):
         self._settings = yaml_load(self._filename)
