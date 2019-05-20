@@ -62,12 +62,12 @@ class SeLogerSpider(Spiderman):
         # Parse HTML and get results list
         results = root.cssselect(self.CSS_SELECTOR_FOR_RESULTS_LIST)
         # results is a list of one element so return the first one
-        results =  results[0]
+        results = results[0]
 
         ads = []
         for selector in self.CSS_SELECTOR_LIST_FOR_ADS:
-            results = results.cssselect(selector)
-            all_ads.extend(results)
+            selector_results = results.cssselect(selector)
+            ads.extend(selector_results)
         return ads
 
     def process_element(self, element):
