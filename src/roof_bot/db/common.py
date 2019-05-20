@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import logging
-from local import build_or_update_database_local
+from db.local import build_or_update_database_local
 
 logger = logging.getLogger(__name__)
 
