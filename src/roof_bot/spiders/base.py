@@ -72,12 +72,13 @@ class Spiderman(metaclass=ABCMeta):
         pass
 
     def process(self, urls):
+        results = []
         for url in urls:
-            print(url)
             content = self.make_request(url)
             ads = self.process_page(content)
             for ad in ads:
-                yield self.process_element(ad)
+                results.append(self.process_element(ad))
+        return results
 
     @abstractmethod
     def process_page(self, url):
