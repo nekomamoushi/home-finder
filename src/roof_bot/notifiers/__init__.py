@@ -7,8 +7,6 @@ all_notifiers = {
 }
 
 def notify(notifier_name, data, **kwargs):
-    print(kwargs)
-    print(all_notifiers.keys())
     if notifier_name in all_notifiers:
         notifier = all_notifiers[notifier_name](**kwargs)
         notifier.notify(data)
