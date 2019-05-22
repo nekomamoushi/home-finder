@@ -27,3 +27,6 @@ def file_exists(filename):
     if Path(filename).expanduser().exists():
         return True
     return False
+
+def build_filename(dirname, filename):
+    return "{0}/{1}".format(dirname, filename)
