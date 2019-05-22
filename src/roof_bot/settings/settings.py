@@ -36,3 +36,23 @@ class Settings(object):
     @property
     def cities(self):
         return self._settings["search"]["cities"]
+
+    @property
+    def notifier_name(self):
+        return self._settings["notification"]["name"]
+
+    @property
+    def notifier_type(self):
+        return self._settings["notification"]["required"]["type"]
+
+    @property
+    def notifier_trigger(self):
+        return self._settings["notification"]["required"]["trigger"]
+
+    @property
+    def notifier_token(self):
+        return self._notifier_token
+
+    @notifier_token.setter
+    def notifier_token(self, token):
+        self._notifier_token = token

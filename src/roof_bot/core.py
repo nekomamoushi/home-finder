@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+import os
 from pathlib import Path
 import logging
 
@@ -8,17 +9,32 @@ from utils.file import build_filename, file_exists
 from utils.misc import filter_ids, compare_ids
 from db.common import build_or_update_database, load_database
 from providers import get_provider, all_providers
+from notifiers import notify
 
 logger = logging.getLogger(__name__)
 
-SETTINGS_FILENAME = Path("~").expanduser() / ".local" / "roof-bot" / "settings.yml"
-DATABASE_DIRECTORY = Path("~").expanduser() / ".local" / "roof-bot"
+HOME = Path("~").expanduser()
+SETTINGS_FILENAME = HOME / ".local" / "roof-bot" / "settings.yml"
+DATABASE_DIRECTORY = HOME / ".local" / "roof-bot"
+
 
 def check_settings():
     if not file_exists(SETTINGS_FILENAME):
-        error_msg = "<{0}> don't exists.".format(filename)
+        error_msg = "<{0}> don't exists.".format(SETTINGS_FILENAME)
         raise Exception(error_msg)
-    return Settings(SETTINGS_FILENAME)
+
+    settings = Settings(SETTINGS_FILENAME)
+    notifier_token = check_notifier_token()
+    settings.notifier_token = notifier_token
+    return settings
+
+
+def check_notifier_token():
+    notifier_token = os.environ.get("NOTIFIER_TOKEN", None)
+    if not notifier_token:
+        raise Exception("You need to set NOTIFIER_TOKEN")
+    return notifier_token
+
 
 def verify_new_ads(storage, database, new_results):
     old_ids = load_database(storage, database)
@@ -33,8 +49,20 @@ def verify_new_ads(storage, database, new_results):
 
     if not new_ads:
         logger.info("There is no new ads")
-    else:
-        logger.info("There is {0} new ads".format(len(new_ads)))
+        return None
+
+    logger.info("There is {0} new ads".format(len(new_ads)))
+    return new_ads
+
+
+def notify_new_ads(new_ads, settings):
+    notifier = settings.notifier_name
+    token = settings.notifier_token
+    trigger = settings.notifier_trigger
+
+    for ad in new_ads:
+        notify(notifier, ad, credentials=token, trigger=trigger)
+
 
 def execute(settings):
     for provider_name in all_providers:
@@ -50,12 +78,12 @@ def execute(settings):
         # Create database if not exists
         db_file = build_filename(DATABASE_DIRECTORY, provider_name)
         if file_exists(db_file):
-            verify_new_ads("local", db_file, results)
+            new_ads = verify_new_ads("local", db_file, results)
+            if new_ads:
+                notify_new_ads(new_ads, settings)
             build_or_update_database("local", db_file, results, update=True)
             spider.close()
             exit(0)
 
         build_or_update_database("local", db_file, results)
         spider.close()
-
-

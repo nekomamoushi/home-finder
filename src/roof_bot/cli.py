@@ -24,16 +24,19 @@ def check_args():
     args = parser.parse_args()
     return args
 
+
 def configure_logging(debug):
     log_level = logging.DEBUG if debug else logging.INFO
     setup_logging(log_level)
     setup_logging_dependencies()
+
 
 def cli():
     args = check_args()
     configure_logging(args.debug)
     settings = check_settings()
     execute(settings)
+
 
 if __name__ == "__main__":
     cli()
