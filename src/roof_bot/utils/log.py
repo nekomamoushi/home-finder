@@ -25,23 +25,23 @@ def setup_logging(log_level=logging.INFO):
     logging.root.setLevel(log_level)
 
 def setup_logging_dependencies(log_level=logging.WARNING):
-    logging.getLogger("selenium").setLevel(level)
-    logging.getLogger("urllib3").setLevel(level)
-    logging.getLogger("parse").setLevel(level)
+    logging.getLogger("selenium").setLevel(log_level)
+    logging.getLogger("urllib3").setLevel(log_level)
+    logging.getLogger("parse").setLevel(log_level)
 
 #-----------------------------------------------------------------------------#
 
-def get_stream_handler(stream, level, format_):
+def get_stream_handler(stream, log_level, format_):
     handler = logging.StreamHandler(stream)
 
     formatter = logging.Formatter(format_)
     handler.setFormatter(formatter)
 
-    handler.setLevel(level)
+    handler.setLevel(log_level)
 
     return handler
 
-def get_rotate_file_handler(filename, level, format_):
+def get_rotate_file_handler(filename, log_level, format_):
     handler = logging.handlers.RotatingFileHandler(
         filename,
         maxBytes=100000,
@@ -52,6 +52,6 @@ def get_rotate_file_handler(filename, level, format_):
     formatter = logging.Formatter(format_)
     handler.setFormatter(formatter)
 
-    handler.setLevel(level)
+    handler.setLevel(log_level)
 
     return handler
