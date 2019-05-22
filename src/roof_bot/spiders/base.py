@@ -71,6 +71,12 @@ class Spiderman(metaclass=ABCMeta):
     def crawl(self):
         pass
 
+    def crawl(self):
+        self.logger.info("Crawling provider: {0}".format(self.NAME))
+        urls = self.start_urls()
+        ads = self.process(urls)
+        return ads
+
     def process(self, urls):
         results = []
         for url in urls:

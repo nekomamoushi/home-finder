@@ -23,12 +23,6 @@ class SeLogerSpider(Spiderman):
         'div.c-pa-list.c-pa-bd.cartouche',
     ]
 
-    def crawl(self):
-        self.logger.info("Crawling provider: {0}".format(self.NAME))
-        urls = self.start_urls()
-        ads = self.process(urls)
-        return ads
-
     def start_urls(self):
 
         def make_url(base, var, page_number):
