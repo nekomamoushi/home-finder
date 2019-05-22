@@ -13,7 +13,7 @@ DEFAULT_LOGGING = {
     'disable_existing_loggers': False,
 }
 
-def setup_logging(name, level=logging.INFO):
+def setup_logging(log_level=logging.INFO):
     dictConfig(DEFAULT_LOGGING)
 
     stream_handler = get_stream_handler(sys.stdout, logging.DEBUG, SHORT_FORMAT)
@@ -22,9 +22,9 @@ def setup_logging(name, level=logging.INFO):
     rotate_file_handler = get_rotate_file_handler('/tmp/roof-bot.log', logging.DEBUG, STANDARD_FORMAT)
     logging.root.addHandler(rotate_file_handler)
 
-    logging.root.setLevel(level)
+    logging.root.setLevel(log_level)
 
-def setup_logging_dependencies(level=logging.WARNING):
+def setup_logging_dependencies(log_level=logging.WARNING):
     logging.getLogger("selenium").setLevel(level)
     logging.getLogger("urllib3").setLevel(level)
     logging.getLogger("parse").setLevel(level)
