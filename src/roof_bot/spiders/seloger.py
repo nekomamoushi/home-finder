@@ -1,11 +1,7 @@
 # -*- coding: utf-8 -*-
 
-import random
-from time import sleep
 from math import ceil
 
-from selenium import webdriver
-from selenium.webdriver.firefox.options import Options
 from lxml import html
 from parse import parse
 
@@ -30,7 +26,7 @@ class SeLogerSpider(Spiderman):
 
         listing_var = "&LISTING-LISTpg="
         nb_ads, nb_pages = self.ads_number()
-        self.logger.info("Found {0} results according to your criterias".format(nb_ads))
+        self.logger.info("Found {} results.".format(nb_ads))
         nb_pages = int(nb_pages)
         urls = [
             make_url(self._search_url, listing_var, n)

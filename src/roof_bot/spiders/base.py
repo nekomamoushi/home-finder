@@ -11,6 +11,7 @@ from selenium.webdriver.firefox.options import Options
 
 from utils.http import get_user_agent
 
+
 class Spiderman(metaclass=ABCMeta):
 
     NAME = None
@@ -19,7 +20,7 @@ class Spiderman(metaclass=ABCMeta):
         self._search_url = search_url
         self._delay = delay
         if delay <= 1:
-            warnings.warn("Becareful delay={0}, be gentle when scraping".format(delay))
+            warnings.warn("Becareful delay={0}, scrape gentle".format(delay))
         self._logger = logging.getLogger(__name__)
         self.start()
 
@@ -45,10 +46,13 @@ class Spiderman(metaclass=ABCMeta):
         profile.set_preference("permissions.default.image", 2)
 
         # Firefox session
-        self.driver = webdriver.Firefox(options=options, firefox_profile=profile)
+        self.driver = webdriver.Firefox(
+            options=options,
+            firefox_profile=profile
+        )
         self.driver.implicitly_wait(15)
 
-	# Close chromedriver
+    # Close chromedriver
     def close(self):
         self.logger.debug("Closing webdriver")
         self.driver.quit()
@@ -93,4 +97,3 @@ class Spiderman(metaclass=ABCMeta):
     @abstractmethod
     def process_element(self, element):
         pass
-

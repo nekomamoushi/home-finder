@@ -18,13 +18,15 @@ class Provider(object):
     def spider(self):
         return self._spider_class
 
+
 all_providers = {
     "seloger": Provider(SelogerSettings, SeLogerSpider)
 }
+
 
 def get_provider(provider_name):
     if provider_name in all_providers:
         provider = all_providers[provider_name]
         return provider
     else:
-        raise Exception("<{0}> provider does not exists.".format(provider_name))
+        raise Exception("<{0}> provider doesn't exists.".format(provider_name))

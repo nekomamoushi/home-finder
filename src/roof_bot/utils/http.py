@@ -5,7 +5,7 @@ from random import randint
 
 def get_user_agent():
     USER_AGENTS = [
-        #Firefox
+        # Firefox
         'Mozilla/4.0 (compatible; MSIE 9.0; Windows NT 6.1)',
         'Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; rv:11.0) like Gecko',
         'Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; WOW64; Trident/5.0)',

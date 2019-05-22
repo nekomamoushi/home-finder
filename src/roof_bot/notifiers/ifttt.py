@@ -27,4 +27,3 @@ class Ifttt(Notifier):
         url = self.notification_url.format(self._trigger, self._credentials)
         r = requests.post(url, data=data)
         self.logger.debug("http status: <{0}>".format(r.status_code))
-

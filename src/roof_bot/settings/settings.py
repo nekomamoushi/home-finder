@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 
-import yaml
-
 from utils.file import yaml_load
 
 
@@ -38,4 +36,3 @@ class Settings(object):
     @property
     def cities(self):
         return self._settings["search"]["cities"]
-

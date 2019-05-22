@@ -2,7 +2,6 @@
 
 from pathlib import Path
 
-from settings.settings import Settings
 from utils.file import csv_load
 
 
@@ -18,7 +17,8 @@ class SelogerSettings(object):
 
     @property
     def url(self):
-        temp_url = self.SEARCH_URL + "?types=1&projects=2&enterprise=0&natures=1,2&picture=15"
+        temp_url = self.SEARCH_URL
+        temp_url += "?types=1&projects=2&enterprise=0&natures=1,2&picture=15"
         temp_url += "&surface={0}".format(self.process_surface())
         temp_url += "&rooms={0}".format(self.process_rooms())
         temp_url += "&bedrooms={0}".format(self.process_bedrooms())
@@ -51,8 +51,8 @@ class SelogerSettings(object):
                 if city == code[0]:
                     break
             else:
-                error_msg = "ERROR: <{0}> does not exists".format(city)
-                error_msg += "ERROR: Check the name in {0}".format(INSEE_CODE_CITES_FILENAME)
+                error_msg = "ERROR: <{}> does not exists".format(city)
+                error_msg += "ERROR: See {}".format(INSEE_CODE_CITES_FILENAME)
                 raise Exception(error_msg)
             return code
 
