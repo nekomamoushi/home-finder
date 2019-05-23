@@ -56,3 +56,11 @@ class Settings(object):
     @notifier_token.setter
     def notifier_token(self, token):
         self._notifier_token = token
+
+    @property
+    def dropbox_token(self):
+        self._dropbox_token
+
+    @dropbox_token.setter
+    def dropbox_token(self, token):
+        self._dropbox_token = token

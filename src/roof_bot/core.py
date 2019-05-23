@@ -24,6 +24,8 @@ def check_settings():
         raise Exception(error_msg)
 
     settings = Settings(SETTINGS_FILENAME)
+    dropbox_token = check_dropbox_token()
+    settings.dropbox_token = dropbox_token
     notifier_token = check_notifier_token()
     settings.notifier_token = notifier_token
     return settings
@@ -34,6 +36,13 @@ def check_notifier_token():
     if not notifier_token:
         raise Exception("You need to set NOTIFIER_TOKEN")
     return notifier_token
+
+
+def check_dropbox_token():
+    dropbox_token = os.environ.get("DROPBOX_TOKEN", None)
+    if not dropbox_token:
+        raise Exception("You need to set DROPBOX_TOKEN")
+    return dropbox_token
 
 
 def verify_new_ads(storage, database, new_results):
