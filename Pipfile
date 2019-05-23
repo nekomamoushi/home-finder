@@ -12,6 +12,7 @@ parse = "*"
 cssselect = "*"
 pyyaml = "*"
 requests = "*"
+dropbox = "*"
 
 [requires]
 python_version = "3.7"
