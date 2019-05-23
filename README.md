@@ -11,16 +11,14 @@ You can use this [sample](samples/settings.yml).
 ### Search
 
 * `price`:
-  * `MIN`
-  * `MAX`
-
+ * `MIN`
+ * `MAX`
 * `surface`:
-  * `MIN`
-  * `MAX`
+ * `MIN`
+ * `MAX`
 * `rooms`
 * `bedrooms`
 * `cities`
-
 
 ### Notification
 
@@ -34,17 +32,24 @@ For now, there is only:
 
 * One provider: [SELOGER](www.seloger.com)
 * One notifier: [IFTTT](www.ifttt.com)
-  * one type: `webhook`
+ * One type: `webhook`
 
 
 ## Setup
 
-Before using this bot, you'll need an account on IFTTT:
+Before using this bot, you'll need an account on Dropbox and IFTTT
 
-* Create an acccount if you don't have on
-* Create a webhook service
-* fill the settings with trigger
-* export the variable `NOTIFY_TOKEN` with the IFTTT key
+* Dropbox
+ * Create an acccount if you don't have on
+ * create a directory named `home-finder`
+ * put your `settings.yml` in this directory
+ * `export DROPBOX_TOKEN=your-dropbox-token`
+
+* IFTTT
+ * Create an acccount if you don't have on
+ * Create a webhook service
+ * update your `settings.yml`
+ * `export NOTIFIER_TOKEN=your-notifier-token`
 
 ## Usage
 
