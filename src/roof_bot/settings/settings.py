@@ -58,5 +58,5 @@ class Settings(object):
 
     @property
     def dropbox(self):
-        self._dropbox
+        return self._dropbox
 

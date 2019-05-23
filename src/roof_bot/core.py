@@ -39,8 +39,8 @@ def check_dropbox_token():
     return dropbox_token
 
 
-def verify_new_ads(storage, database, new_results):
-    old_ids = load_database(storage, database)
+def verify_new_ads(dbx, database, new_results):
+    old_ids = load_database(dbx, database)
     new_ids = filter_ids(new_results)
     diff_ids = compare_ids(old_ids, new_ids)
 
@@ -81,12 +81,12 @@ def execute(settings):
         # Create database if not exists
         database_path = get_database_file(provider_name)
         if dropbox_file_exists(settings.dropbox, database_path):
-            new_ads = verify_new_ads("local", database_path, results)
+            new_ads = verify_new_ads(settings.dropbox, database_path, results)
             if new_ads:
                 notify_new_ads(new_ads, settings)
-            build_or_update_database("local", database_path, results, update=True)
+            build_or_update_database(settings.dropbox, database_path, results, update=True)
             spider.close()
             exit(0)
 
-        build_or_update_database("local", database_path, results)
+        build_or_update_database(settings.dropbox, database_path, results)
         spider.close()
