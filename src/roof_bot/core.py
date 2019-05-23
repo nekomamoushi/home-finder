@@ -84,7 +84,7 @@ def execute(settings):
             new_ads = verify_new_ads(settings.dropbox, database_path, results)
             if new_ads:
                 notify_new_ads(new_ads, settings)
-            build_or_update_database(settings.dropbox, database_path, results, update=True)
+                build_or_update_database(settings.dropbox, database_path, results, update=True)
             spider.close()
             exit(0)
 
