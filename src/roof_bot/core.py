@@ -19,15 +19,9 @@ DATABASE_DIRECTORY = HOME / ".local" / "roof-bot"
 
 
 def check_settings():
-    if not file_exists(SETTINGS_FILENAME):
-        error_msg = "<{0}> don't exists.".format(SETTINGS_FILENAME)
-        raise Exception(error_msg)
-
-    settings = Settings(SETTINGS_FILENAME)
     dropbox_token = check_dropbox_token()
-    settings.dropbox_token = dropbox_token
     notifier_token = check_notifier_token()
-    settings.notifier_token = notifier_token
+    settings = Settings(SETTINGS_FILENAME, dropbox_token, notifier_token)
     return settings
 
 

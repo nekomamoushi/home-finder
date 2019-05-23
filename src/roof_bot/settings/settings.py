@@ -1,12 +1,15 @@
 # -*- coding: utf-8 -*-
 
+from utils.dropbox import get_dropbox_object
 from utils.file import yaml_load
 
 
 class Settings(object):
 
-    def __init__(self, filename):
+    def __init__(self, filename, dropbox_token, notifier_token):
         self._filename = filename
+        self._dropbox = get_dropbox_object(dropbox_token)
+        self._notifier_token = notifier_token
         self.load()
 
     def load(self):
@@ -53,14 +56,7 @@ class Settings(object):
     def notifier_token(self):
         return self._notifier_token
 
-    @notifier_token.setter
-    def notifier_token(self, token):
-        self._notifier_token = token
-
     @property
-    def dropbox_token(self):
-        self._dropbox_token
+    def dropbox(self):
+        self._dropbox
 
-    @dropbox_token.setter
-    def dropbox_token(self, token):
-        self._dropbox_token = token
