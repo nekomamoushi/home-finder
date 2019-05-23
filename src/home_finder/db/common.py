@@ -3,9 +3,9 @@
 from pathlib import Path
 import logging
 
-from db.dropbox import build_or_update_database_dropbox, load_database_dropbox
-from db.local import build_or_update_database_local, load_database_local
-from utils.misc import filter_ids
+from home_finder.db.dropbox import build_or_update_database_dropbox, load_database_dropbox
+from home_finder.db.local import build_or_update_database_local, load_database_local
+from home_finder.utils.misc import filter_ids
 
 
 logger = logging.getLogger(__name__)

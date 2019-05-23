@@ -2,7 +2,7 @@
 
 from pathlib import Path
 
-from utils.file import csv_load
+from home_finder.utils.file import csv_load
 
 
 INSEE_CODE_CITES_FILENAME = Path(__file__).parent.parent.parent.parent / "res" / "minified-code-postal-code-insee-iledefrance-2015.csv"

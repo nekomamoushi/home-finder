@@ -2,8 +2,8 @@
 import argparse
 import logging
 
-from utils.log import setup_logging, setup_logging_dependencies
-from core import check_settings, execute
+from home_finder.utils.log import setup_logging, setup_logging_dependencies
+from home_finder.core import check_settings, execute
 
 logger = logging.getLogger(__name__)
 

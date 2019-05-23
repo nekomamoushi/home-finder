@@ -3,7 +3,7 @@
 import requests
 import logging
 
-from notifiers.base import Notifier
+from home_finder.notifiers.base import Notifier
 
 
 class Ifttt(Notifier):

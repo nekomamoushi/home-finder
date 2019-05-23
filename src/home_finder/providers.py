@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from settings.seloger import SelogerSettings
-from spiders.seloger import SeLogerSpider
+from home_finder.settings.seloger import SelogerSettings
+from home_finder.spiders.seloger import SeLogerSpider
 
 
 class Provider(object):

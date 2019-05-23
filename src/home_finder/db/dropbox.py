@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-from utils.dropbox import get_dropbox_object
-from utils.dropbox import dropbox_load_file
-from utils.dropbox import dropbox_create_file, dropbox_delete_file
+from home_finder.utils.dropbox import get_dropbox_object
+from home_finder.utils.dropbox import dropbox_load_file
+from home_finder.utils.dropbox import dropbox_create_file, dropbox_delete_file
 
 
 def build_database(dbx, path, data):

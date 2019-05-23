@@ -5,7 +5,7 @@ from math import ceil
 from lxml import html
 from parse import parse
 
-from spiders.base import Spiderman
+from home_finder.spiders.base import Spiderman
 
 
 class SeLogerSpider(Spiderman):

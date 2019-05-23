@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from notifiers.ifttt import Ifttt
+from home_finder.notifiers.ifttt import Ifttt
 
 all_notifiers = {
     "ifttt": Ifttt

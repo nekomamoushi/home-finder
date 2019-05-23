@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from utils.dropbox import get_dropbox_object
-from utils.file import yaml_load
+from home_finder.utils.dropbox import get_dropbox_object
+from home_finder.utils.file import yaml_load
 
 
 class Settings(object):

@@ -4,12 +4,12 @@ import os
 from pathlib import Path
 import logging
 
-from settings.settings import Settings
-from utils.dropbox import dropbox_file_exists
-from utils.misc import filter_ids, compare_ids
-from db.common import get_database_file, build_or_update_database, load_database
-from providers import get_provider, all_providers
-from notifiers import notify
+from home_finder.settings.settings import Settings
+from home_finder.utils.dropbox import dropbox_file_exists
+from home_finder.utils.misc import filter_ids, compare_ids
+from home_finder.db.common import get_database_file, build_or_update_database, load_database
+from home_finder.providers import get_provider, all_providers
+from home_finder.notifiers import notify
 
 logger = logging.getLogger(__name__)
 

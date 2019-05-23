@@ -4,7 +4,7 @@ from pathlib import Path
 import yaml
 import csv
 
-from utils.dropbox import dropbox_file_exists, dropbox_load_file
+from home_finder.utils.dropbox import dropbox_file_exists, dropbox_load_file
 
 
 def yaml_load(filename, dropbox=None, storage="dropbox"):

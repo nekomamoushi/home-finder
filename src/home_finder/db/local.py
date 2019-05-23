@@ -3,7 +3,7 @@
 from pathlib import Path
 import logging
 
-from utils.misc import filter_ids
+from home_finder.utils.misc import filter_ids
 
 logger = logging.getLogger(__name__)
 

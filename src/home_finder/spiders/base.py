@@ -9,7 +9,7 @@ import warnings
 from selenium import webdriver
 from selenium.webdriver.firefox.options import Options
 
-from utils.http import get_user_agent
+from home_finder.utils.http import get_user_agent
 
 
 class Spiderman(metaclass=ABCMeta):
