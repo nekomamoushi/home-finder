@@ -38,6 +38,7 @@ def setup_logging_dependencies(log_level=logging.WARNING):
     logging.getLogger("selenium").setLevel(log_level)
     logging.getLogger("urllib3").setLevel(log_level)
     logging.getLogger("parse").setLevel(log_level)
+    logging.getLogger("dropbox").setLevel(log_level)
 
 
 def get_stream_handler(stream, log_level, format_):
