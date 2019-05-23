@@ -4,12 +4,23 @@ from pathlib import Path
 import yaml
 import csv
 
+from utils.dropbox import dropbox_file_exists, dropbox_load_file
 
-def yaml_load(filename, storage="local"):
+
+def yaml_load(filename, dropbox=None, storage="dropbox"):
     if storage == "local":
         file = Path(filename)
+        if not file.exists():
+            error_msg = "Local: <{0}> don't exists.".format(filename)
+            raise Exception(error_msg)
         with file.open(mode='r') as fp:
             return yaml.safe_load(fp)
+    elif storage == "dropbox":
+        if not dropbox_file_exists(dropbox, filename):
+            error_msg = "Dropbox: <{0}> don't exists.".format(filename)
+            raise Exception(error_msg)
+        data = dropbox_load_file(dropbox, filename)
+        return yaml.safe_load(data)
     else:
         raise NotImplementedError()
 

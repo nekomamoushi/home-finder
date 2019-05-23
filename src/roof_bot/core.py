@@ -14,7 +14,7 @@ from notifiers import notify
 logger = logging.getLogger(__name__)
 
 HOME = Path("~").expanduser()
-SETTINGS_FILENAME = HOME / ".local" / "roof-bot" / "settings.yml"
+SETTINGS_FILENAME = "/home-finder/settings.yml"
 DATABASE_DIRECTORY = HOME / ".local" / "roof-bot"
 
 

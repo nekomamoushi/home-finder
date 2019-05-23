@@ -13,7 +13,7 @@ class Settings(object):
         self.load()
 
     def load(self):
-        self._settings = yaml_load(self._filename)
+        self._settings = yaml_load(self._filename, self._dropbox)
 
     def display(self):
         print(self._settings)
