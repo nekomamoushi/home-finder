@@ -5,9 +5,9 @@ from pathlib import Path
 import logging
 
 from settings.settings import Settings
-from utils.file import build_filename, file_exists
+from utils.dropbox import dropbox_file_exists
 from utils.misc import filter_ids, compare_ids
-from db.common import build_or_update_database, load_database
+from db.common import get_database_file, build_or_update_database, load_database
 from providers import get_provider, all_providers
 from notifiers import notify
 
@@ -79,14 +79,14 @@ def execute(settings):
         results = spider.crawl()
 
         # Create database if not exists
-        db_file = build_filename(DATABASE_DIRECTORY, provider_name)
-        if file_exists(db_file):
-            new_ads = verify_new_ads("local", db_file, results)
+        database_path = get_database_file(provider_name)
+        if dropbox_file_exists(settings.dropbox, database_path):
+            new_ads = verify_new_ads("local", database_path, results)
             if new_ads:
                 notify_new_ads(new_ads, settings)
-            build_or_update_database("local", db_file, results, update=True)
+            build_or_update_database("local", database_path, results, update=True)
             spider.close()
             exit(0)
 
-        build_or_update_database("local", db_file, results)
+        build_or_update_database("local", database_path, results)
         spider.close()

@@ -35,7 +35,7 @@ def cli():
     args = check_args()
     configure_logging(args.debug)
     settings = check_settings()
-    #execute(settings)
+    execute(settings)
 
 
 if __name__ == "__main__":
